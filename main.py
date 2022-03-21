@@ -72,8 +72,14 @@ if args.resume:
     start_epoch = checkpoint['epoch']
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=args.lr,
-                      momentum=0.9, weight_decay=5e-4)
+# optimizer = optim.SGD(net.parameters(), lr=args.lr,
+#                       momentum=0.9, weight_decay=5e-4)
+
+# optimizer = optim.Adagrad(net.parameters(), lr=args.lr, weight_decay=5e-4)
+
+optimizer = optim.Adadelta(net.parameters(), lr=args.lr, weight_decay=5e-4)
+
+# optimizer = optim.Adam(net.parameters(), lr=args.lr, weight_decay=5e-4)
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
 
@@ -135,10 +141,12 @@ def test(epoch):
         torch.save(state, './checkpoint/ckpt.pth')
         best_acc = acc
 
-# print number of trainable parameters
+# print number of architecture parameters
 resnet_total_params = sum(p.numel() for p in net.parameters() if p.requires_grad)
 print("Number of trainable parameters in the model: %d\n"%(resnet_total_params))
-# for epoch in range(start_epoch, start_epoch+200):
-#     train(epoch)
-#     test(epoch)
-#     scheduler.step()
+
+
+for epoch in range(start_epoch, start_epoch+200):
+    train(epoch)
+    test(epoch)
+    scheduler.step()
