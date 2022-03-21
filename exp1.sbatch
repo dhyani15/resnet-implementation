@@ -8,8 +8,7 @@
 #SBATCH --job-name=results
 #SBATCH --output=exp1.out
 #SBATCH --gres=gpu:1
-#SBATCH --mail-type=END
-#SBATCH --mail-user=nhd7682@nyu.edu
+
 
 module purge
 module load anaconda3/2020.07

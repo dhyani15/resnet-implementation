@@ -15,18 +15,18 @@ import argparse
 
 from utils import progress_bar
 
-
+# python main.py --lr 0.001 --optim ADADELTA
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
-parser.add_argument('--resume', '-r', action='store_true',
-                    help='resume from checkpoint')
+parser.add_argument('--optim', default='ADADELTA', type=str, help='optimizer')
+parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
 args = parser.parse_args()
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 best_acc = 0  # best test accuracy
 start_epoch = 0  # start from epoch 0 or last checkpoint epoch
 
-# Data
+# ===============Data================
 print('==> Preparing data..')
 transform_train = transforms.Compose([
     transforms.RandomCrop(32, padding=4),
@@ -53,7 +53,7 @@ testloader = torch.utils.data.DataLoader(
 classes = ('plane', 'car', 'bird', 'cat', 'deer',
            'dog', 'frog', 'horse', 'ship', 'truck')
 
-# Model
+# ================Model================
 print('==> Building model..')
 
 net = project1_model()
@@ -72,14 +72,18 @@ if args.resume:
     start_epoch = checkpoint['epoch']
 
 criterion = nn.CrossEntropyLoss()
-# optimizer = optim.SGD(net.parameters(), lr=args.lr,
-#                       momentum=0.9, weight_decay=5e-4)
 
-# optimizer = optim.Adagrad(net.parameters(), lr=args.lr, weight_decay=5e-4)
+# select optimizer
 
-optimizer = optim.Adadelta(net.parameters(), lr=args.lr, weight_decay=5e-4)
+if args.optim == 'ADADELTA':
+    optimizer = optim.Adadelta(net.parameters(), lr=args.lr, weight_decay=5e-4)
+elif args.optim == 'SGD':
+    optimizer = optim.SGD(net.parameters(), lr=args.lr,momentum=0.9, weight_decay=5e-4)
+elif args.optim == 'ADAGRAD':
+    optimizer = optim.Adagrad(net.parameters(), lr=args.lr, weight_decay=5e-4)
+elif args.optim == 'ADAM':
+    optimizer = optim.Adam(net.parameters(), lr=args.lr, weight_decay=5e-4)
 
-# optimizer = optim.Adam(net.parameters(), lr=args.lr, weight_decay=5e-4)
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
 
