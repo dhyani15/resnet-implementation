@@ -1,4 +1,5 @@
 from project1_model import project1_model
+import matplotlib.pyplot as plt
 
 '''Train CIFAR10 with PyTorch.'''
 import torch
@@ -86,7 +87,8 @@ elif args.optim == 'ADAM':
 
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
-
+train_loss_history = []
+test_loss_history = []
 # Training
 def train(epoch):
     print('\nEpoch: %d' % epoch)
@@ -109,7 +111,11 @@ def train(epoch):
 
         progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                      % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
-
+    train_loss = train_loss/len(trainloader)
+    
+    train_loss_history.append(train_loss)
+    
+    print('Epoch %s, Train loss %s, Test loss %s'%(epoch, train_loss, test_loss))
 
 def test(epoch):
     global best_acc
@@ -130,6 +136,8 @@ def test(epoch):
 
             progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                          % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
+        test_loss = test_loss/len(testloader)
+        test_loss_history.append(test_loss)
 
     # Save checkpoint.
     acc = 100.*correct/total
@@ -154,3 +162,12 @@ for epoch in range(start_epoch, start_epoch+200):
     train(epoch)
     test(epoch)
     scheduler.step()
+
+
+plt.plot(range(200),train_loss_history,'-',linewidth=3,label='Train error')
+plt.plot(range(200),test_loss_history,'-',linewidth=3,label='Test error')
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.grid(True)
+plt.legend()
+plt.savefig("experiment1.png")
