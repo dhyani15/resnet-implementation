@@ -154,14 +154,14 @@ resnet_total_params = sum(p.numel() for p in net.parameters() if p.requires_grad
 print("Number of trainable parameters in the model: %d\n"%(resnet_total_params))
 
 
-for epoch in range(start_epoch, start_epoch+200):
+for epoch in range(start_epoch, start_epoch+10):
     train(epoch)
     test(epoch)
     scheduler.step()
 
 
-plt.plot(range(200),train_loss_history,'-',linewidth=3,label='Train error')
-plt.plot(range(200),test_loss_history,'-',linewidth=3,label='Test error')
+plt.plot(range(10),train_loss_history,'-',linewidth=3,label='Train error')
+plt.plot(range(10),test_loss_history,'-',linewidth=3,label='Test error')
 plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.grid(True)
