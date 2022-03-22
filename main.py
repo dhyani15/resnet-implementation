@@ -106,14 +106,12 @@ def train(epoch):
         _, predicted = outputs.max(1)
         total += targets.size(0)
         correct += predicted.eq(targets).sum().item()
-
-        progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
+        if batch_idx == len(trainloader)-1:
+            progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                      % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
-    train_loss = train_loss/len(trainloader)
-    
+    train_loss = train_loss/len(trainloader) 
     train_loss_history.append(train_loss)
     
-    print('Epoch %s, Train loss %s, Test loss %s'%(epoch, train_loss, test_loss))
 
 def test(epoch):
     global best_acc
@@ -131,8 +129,8 @@ def test(epoch):
             _, predicted = outputs.max(1)
             total += targets.size(0)
             correct += predicted.eq(targets).sum().item()
-
-            progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
+            if batch_idx == len(testloader)-1:
+                progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                          % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
         test_loss = test_loss/len(testloader)
         test_loss_history.append(test_loss)
