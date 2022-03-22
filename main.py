@@ -160,8 +160,8 @@ for epoch in range(start_epoch, start_epoch+5):
     scheduler.step()
 
 
-plt.plot(range(10),train_loss_history,'-',linewidth=3,label='Train error')
-plt.plot(range(10),test_loss_history,'-',linewidth=3,label='Test error')
+plt.plot(range(5),train_loss_history,'-',linewidth=3,label='Train error')
+plt.plot(range(5),test_loss_history,'-',linewidth=3,label='Test error')
 plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.grid(True)
