@@ -8,7 +8,7 @@ import torchvision.transforms as transforms
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyper-parameters
-num_epochs = 10
+num_epochs = 150
 learning_rate = 0.1
 
 # Image preprocessing modules
@@ -141,11 +141,11 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
 
-        
-        print ("Epoch [{}/{}], Step [{}/{}] Loss: {:.4f}".format(epoch+1, num_epochs, i+1, total_step, loss.item()))
+        if (i+1) % 100 == 0:
+            print ("Epoch [{}/{}], Step [{}/{}] Loss: {:.4f}".format(epoch+1, num_epochs, i+1, total_step, loss.item()))
 
     # Decay learning rate
-    if (epoch+1) % 2 == 0:
+    if (epoch+1) % 20 == 0:
         curr_lr /= 3
         update_lr(optimizer, curr_lr)
 
