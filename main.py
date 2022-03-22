@@ -20,7 +20,8 @@ from utils import progress_bar
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
 parser.add_argument('--optim', default='ADADELTA', type=str, help='optimizer')
-parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
+parser.add_argument('--resume', '-r', action='store_true',
+                    help='resume from checkpoint')
 args = parser.parse_args()
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -77,7 +78,8 @@ criterion = nn.CrossEntropyLoss()
 if args.optim == 'ADADELTA':
     optimizer = optim.Adadelta(net.parameters(), lr=args.lr, weight_decay=5e-4)
 elif args.optim == 'SGD':
-    optimizer = optim.SGD(net.parameters(), lr=args.lr,momentum=0.9, weight_decay=5e-4)
+    optimizer = optim.SGD(net.parameters(), lr=args.lr,
+                          momentum=0.9, weight_decay=5e-4)
 elif args.optim == 'ADAGRAD':
     optimizer = optim.Adagrad(net.parameters(), lr=args.lr, weight_decay=5e-4)
 elif args.optim == 'ADAM':
@@ -88,6 +90,8 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 train_loss_history = []
 test_loss_history = []
 # Training
+
+
 def train(epoch):
     print('\nEpoch: %d' % epoch)
     net.train()
@@ -108,10 +112,10 @@ def train(epoch):
         correct += predicted.eq(targets).sum().item()
         if batch_idx == len(trainloader)-1:
             progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
-                     % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
-    train_loss = train_loss/len(trainloader) 
+                         % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
+    train_loss = train_loss/len(trainloader)
     train_loss_history.append(train_loss)
-    
+
 
 def test(epoch):
     global best_acc
@@ -131,7 +135,7 @@ def test(epoch):
             correct += predicted.eq(targets).sum().item()
             if batch_idx == len(testloader)-1:
                 progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
-                         % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
+                             % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
         test_loss = test_loss/len(testloader)
         test_loss_history.append(test_loss)
 
@@ -149,21 +153,24 @@ def test(epoch):
         torch.save(state, './checkpoint/ckpt.pth')
         best_acc = acc
 
+
 # print number of architecture parameters
-resnet_total_params = sum(p.numel() for p in net.parameters() if p.requires_grad)
-print("Number of trainable parameters in the model: %d\n"%(resnet_total_params))
+resnet_total_params = sum(p.numel()
+                          for p in net.parameters() if p.requires_grad)
+print("Number of trainable parameters in the model: %d\n" %
+      (resnet_total_params))
 
 
-for epoch in range(start_epoch, start_epoch+5):
+for epoch in range(start_epoch, start_epoch+200):
     train(epoch)
     test(epoch)
     scheduler.step()
 
 
-plt.plot(range(5),train_loss_history,'-',linewidth=3,label='Train error')
-plt.plot(range(5),test_loss_history,'-',linewidth=3,label='Test error')
+plt.plot(range(200), train_loss_history, '-', linewidth=3, label='Train error')
+plt.plot(range(200), test_loss_history, '-', linewidth=3, label='Test error')
 plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.grid(True)
 plt.legend()
-plt.savefig("experiment1.png")
+plt.savefig("experiment7.png")
