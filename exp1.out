@@ -1,0 +1,46 @@
+Error processing line 1 of /home/mmk9369/.local/lib/python3.8/site-packages/vision-1.0.0-py3.8-nspkg.pth:
+
+  Traceback (most recent call last):
+    File "/share/apps/anaconda3/2020.07/lib/python3.8/site.py", line 169, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+    File "<frozen importlib._bootstrap>", line 553, in module_from_spec
+  AttributeError: 'NoneType' object has no attribute 'loader'
+
+Remainder of file ignored
+Error processing line 1 of /home/mmk9369/.local/lib/python3.8/site-packages/vision-1.0.0-py3.8-nspkg.pth:
+
+  Traceback (most recent call last):
+    File "/share/apps/anaconda3/2020.07/lib/python3.8/site.py", line 169, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+    File "<frozen importlib._bootstrap>", line 553, in module_from_spec
+  AttributeError: 'NoneType' object has no attribute 'loader'
+
+Remainder of file ignored
+Error processing line 1 of /home/mmk9369/.local/lib/python3.8/site-packages/vision-1.0.0-py3.8-nspkg.pth:
+
+  Traceback (most recent call last):
+    File "/share/apps/anaconda3/2020.07/lib/python3.8/site.py", line 169, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+    File "<frozen importlib._bootstrap>", line 553, in module_from_spec
+  AttributeError: 'NoneType' object has no attribute 'loader'
+
+Remainder of file ignored
+Could not find conda environment: condaenv
+You can list all discoverable environments with `conda info --envs`.
+
+11173962
+Files already downloaded and verified
+Error processing line 1 of /home/mmk9369/.local/lib/python3.8/site-packages/vision-1.0.0-py3.8-nspkg.pth:
+
+  Traceback (most recent call last):
+    File "/share/apps/anaconda3/2020.07/lib/python3.8/site.py", line 169, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+    File "<frozen importlib._bootstrap>", line 553, in module_from_spec
+  AttributeError: 'NoneType' object has no attribute 'loader'
+
+Remainder of file ignored
+tensor(0.1000, device='cuda:0')
