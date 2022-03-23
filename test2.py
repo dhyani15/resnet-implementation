@@ -32,5 +32,5 @@ for batch_idx, (inputs, labels) in enumerate(testloader, 1):
         _, predicted = outputs.max(1)
         total += labels.size(0)
         corrects += predicted.eq(labels).sum().item()
-    test_accuracy = 100.*corrects/total
+test_accuracy = 100.*corrects/total
 print(test_accuracy)
