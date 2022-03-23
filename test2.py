@@ -59,13 +59,11 @@ if __name__ == "__main__":
         inputs, labels = inputs.cuda(),labels.cuda()
         with torch.set_grad_enabled(False):
             outputs = model(inputs)
-            _, preds = torch.max(outputs, 1)
-        corrects += torch.sum(preds == labels.data)
-    print(corrects.float() / len(testloader))
+            pred = outputs.data.max(1)[1] # get the index of the max log-probability
+        corrects += pred.eq(labels.data).cpu().sum()
+        test_accuracy = 100. * corrects / len(testloader.dataset)
+    print(test_accuracy)
 
 
 
 
-# pred = predicted_output.data.max(1)[1] # get the index of the max log-probability
-#       test_corrects += pred.eq(labels.data).cpu().sum()
-#       test_accuracy = 100. * test_corrects / len(testDataLoader.dataset)
