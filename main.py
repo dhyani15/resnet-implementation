@@ -89,6 +89,8 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
 train_loss_history = []
 test_loss_history = []
+train_acc_history = []
+test_acc_history = []
 # Training
 
 
@@ -115,6 +117,8 @@ def train(epoch):
                          % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
     train_loss = train_loss/len(trainloader)
     train_loss_history.append(train_loss)
+    train_acc = correct/total
+    train_acc_history.append(train_acc)
 
 
 def test(epoch):
@@ -138,6 +142,8 @@ def test(epoch):
                              % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
         test_loss = test_loss/len(testloader)
         test_loss_history.append(test_loss)
+        test_acc = correct/total
+        test_acc_history.append(test_acc)
 
     # Save checkpoint.
     acc = 100.*correct/total
@@ -166,4 +172,12 @@ plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.grid(True)
 plt.legend()
-plt.savefig("experiment9.png")
+plt.savefig("experiment9_loss.png")
+
+plt.plot(range(200), train_acc_history, '-', linewidth=3, label='Train error')
+plt.plot(range(200), test_acc_history, '-', linewidth=3, label='Test error')
+plt.xlabel('epoch')
+plt.ylabel('acc')
+plt.grid(True)
+plt.legend()
+plt.savefig("experiment9_acc.png")
