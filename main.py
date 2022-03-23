@@ -142,6 +142,7 @@ def test(epoch):
     # Save checkpoint.
     acc = 100.*correct/total
     if acc > best_acc:
+        print("Saving")
         model_path = './project1_model.pt'
         torch.save(net.state_dict(), model_path)
         best_acc = acc
