@@ -24,13 +24,10 @@ testloader = torch.utils.data.DataLoader(
 
 model.eval()
 corrects = 0
-total = 0
 for batch_idx, (inputs, labels) in enumerate(testloader, 1):
     inputs, labels = inputs.to(device), labels.to(device)
     with torch.set_grad_enabled(False):
         outputs = model(inputs)
-        _, predicted = outputs.max(1)
-        total += labels.size(0)
-        corrects += predicted.eq(labels).sum().item()
-test_accuracy = 100.*corrects/total
-print(test_accuracy)
+        _, preds = torch.max(outputs, 1)
+    corrects += torch.sum(preds == labels.data)
+print(corrects.float() / len(testloader.dataset))
