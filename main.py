@@ -20,8 +20,8 @@ from utils import progress_bar
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
 parser.add_argument('--optim', default='ADADELTA', type=str, help='optimizer')
-parser.add_argument('--resume', '-r', action='store_true',
-                    help='resume from checkpoint')
+# parser.add_argument('--resume', '-r', action='store_true',
+#                     help='resume from checkpoint')
 args = parser.parse_args()
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -62,14 +62,14 @@ if device == 'cuda':
     net = torch.nn.DataParallel(net)
     cudnn.benchmark = True
 
-if args.resume:
-    # Load checkpoint.
-    print('==> Resuming from checkpoint..')
-    assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-    checkpoint = torch.load('./checkpoint/ckpt.pth')
-    net.load_state_dict(checkpoint['net'])
-    best_acc = checkpoint['acc']
-    start_epoch = checkpoint['epoch']
+# if args.resume:
+#     # Load checkpoint.
+#     print('==> Resuming from checkpoint..')
+#     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
+#     checkpoint = torch.load('./checkpoint/ckpt.pth')
+#     net.load_state_dict(checkpoint['net'])
+#     best_acc = checkpoint['acc']
+#     start_epoch = checkpoint['epoch']
 
 criterion = nn.CrossEntropyLoss()
 
@@ -148,9 +148,8 @@ def test(epoch):
             'acc': acc,
             'epoch': epoch,
         }
-        if not os.path.isdir('checkpoint'):
-            os.mkdir('checkpoint')
-        torch.save(state, './checkpoint/ckpt.pth')
+        model_path = './project1_model.pt'
+        torch.save(state, model_path)
         best_acc = acc
 
 
@@ -173,4 +172,4 @@ plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.grid(True)
 plt.legend()
-plt.savefig("experiment28.png")
+plt.savefig("experiment9.png")
