@@ -8,11 +8,8 @@ from utils import progress_bar
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = project1_model().to(device)
 model_path = './project1_model.pt'
-checkpoint = torch.load(model_path, map_location=device)
-model.load_state_dict(checkpoint['net'], strict=False)
-
-best_acc = checkpoint['acc']
-print(best_acc)
+model.load_state_dict(torch.load(
+    model_path, map_location=device), strict=False)
 
 transform_test = transforms.Compose([
     transforms.ToTensor(),

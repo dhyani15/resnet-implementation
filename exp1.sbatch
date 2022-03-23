@@ -15,3 +15,4 @@ module load anaconda3/2020.07
 eval "$(conda shell.bash hook)"
 conda activate condaenv
 python main.py
+python test2.py
