@@ -117,7 +117,7 @@ def train(epoch):
                          % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
     train_loss = train_loss/len(trainloader)
     train_loss_history.append(train_loss)
-    train_acc = correct/total
+    train_acc = (correct/total) * 100
     train_acc_history.append(train_acc)
 
 
@@ -142,7 +142,7 @@ def test(epoch):
                              % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
         test_loss = test_loss/len(testloader)
         test_loss_history.append(test_loss)
-        test_acc = correct/total
+        test_acc = (correct/total) * 100
         test_acc_history.append(test_acc)
 
     # Save checkpoint.
@@ -166,19 +166,24 @@ for epoch in range(start_epoch, start_epoch+200):
     test(epoch)
     scheduler.step()
 
+for i in range(2):
+    plt.plot(range(200), train_loss_history, '-',
+             linewidth=3, label='Train error')
+    plt.plot(range(200), test_loss_history, '-',
+             linewidth=3, label='Test error')
+    plt.xlabel('epoch')
+    plt.ylabel('loss')
+    plt.grid(True)
+    plt.legend()
+    plt.savefig("experiment16_loss.png")
 
-plt.plot(range(200), train_loss_history, '-', linewidth=3, label='Train error')
-plt.plot(range(200), test_loss_history, '-', linewidth=3, label='Test error')
-plt.xlabel('epoch')
-plt.ylabel('loss')
-plt.grid(True)
-plt.legend()
-plt.savefig("experiment16_loss.png")
-
-plt.plot(range(200), train_acc_history, '-', linewidth=3, label='Train error')
-plt.plot(range(200), test_acc_history, '-', linewidth=3, label='Test error')
-plt.xlabel('epoch')
-plt.ylabel('acc')
-plt.grid(True)
-plt.legend()
-plt.savefig("experiment16_acc.png")
+    plt.plot(range(200), train_acc_history, '-',
+             linewidth=3, label='Train accuracy')
+    plt.plot(range(200), test_acc_history, '-',
+             linewidth=3, label='Test accuracy')
+    plt.xlabel('epoch')
+    plt.ylabel('acc')
+    plt.grid(True)
+    plt.legend()
+    plt.savefig("experiment16_acc.png")
+    plt.show()

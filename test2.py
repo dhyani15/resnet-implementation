@@ -8,8 +8,9 @@ from utils import progress_bar
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = project1_model().to(device)
 model_path = './project1_model_final.pt'
-model.load_state_dict(torch.load(
-    model_path, map_location=device), strict=False)
+checkpoint = torch.load(model_path, map_location=device)
+model = torch.nn.DataParallel(model)
+model.load_state_dict(checkpoint, strict=False)
 
 transform_test = transforms.Compose([
     transforms.ToTensor(),
@@ -30,4 +31,4 @@ for batch_idx, (inputs, labels) in enumerate(testloader, 1):
         outputs = model(inputs)
         _, preds = torch.max(outputs, 1)
     corrects += torch.sum(preds == labels.data)
-print(corrects.float() / len(testloader.dataset))
+print((corrects.float() / len(testloader.dataset))*100)
