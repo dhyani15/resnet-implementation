@@ -51,10 +51,12 @@ if __name__ == "__main__":
     criterion = nn.CrossEntropyLoss()
 
     test_loss_history = []
-    
+
     model.eval()
     corrects = 0
-    for batch_idx, (inputs, labels) in enumerate(testloader, 1):
+    for batch_idx, data in enumerate(testloader, 1):
+        inputs, labels = data
+        inputs, labels = inputs.cuda(),labels.cuda()
         with torch.set_grad_enabled(False):
             outputs = model(inputs)
             _, preds = torch.max(outputs, 1)
