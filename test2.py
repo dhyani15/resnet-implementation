@@ -38,8 +38,8 @@ if __name__ == "__main__":
         testset, batch_size=100, shuffle=False, num_workers=2)
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.ADADELTA(
-        model.parameters(), lr=0.001, momentum=0.9)
+    optimizer = torch.optim.Adadelta(
+        model.parameters(), lr=0.1, weight_decay=5e-4)
 
     train_loss_history = []
     test_loss_history = []
