@@ -69,8 +69,3 @@ class ResNet(nn.Module):
 
 def project1_model():
     return ResNet(BasicBlock, [2, 2, 2])
-
-
-net = project1_model()
-params = sum(p.numel() for p in net.parameters() if p.requires_grad)
-print(params)

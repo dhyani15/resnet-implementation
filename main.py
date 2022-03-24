@@ -136,11 +136,11 @@ def test(epoch):
 
     # Save model with best accuracy.
     acc = 100.*correct/total
-    # if acc > best_acc:
-    #     print("Saving")
-    #     model_path = './project1_model.pt'
-    #     torch.save(net.state_dict(), model_path)
-    #     best_acc = acc
+    if acc > best_acc:
+        print("Saving")
+        model_path = './test.pt'
+        torch.save(net.state_dict(), model_path)
+        best_acc = acc
 
 
 # print number of architecture parameters
