@@ -166,24 +166,24 @@ for epoch in range(start_epoch, start_epoch+5):
     test(epoch)
     scheduler.step()
 
-for i in range(2):
-    plt.plot(range(5), train_loss_history, '-',
-             linewidth=3, label='Train error')
-    plt.plot(range(5), test_loss_history, '-',
-             linewidth=3, label='Test error')
-    plt.xlabel('epoch')
-    plt.ylabel('loss')
-    plt.grid(True)
-    plt.legend()
-    plt.savefig("experiment16_loss.png")
 
-    plt.plot(range(5), train_acc_history, '-',
-             linewidth=3, label='Train accuracy')
-    plt.plot(range(5), test_acc_history, '-',
-             linewidth=3, label='Test accuracy')
-    plt.xlabel('epoch')
-    plt.ylabel('acc')
-    plt.grid(True)
-    plt.legend()
-    plt.savefig("experiment16_acc.png")
-    plt.show()
+plt.figure(figsize=(15, 15))
+plt.subplot(1, 2, 1)
+plt.plot(range(5), train_loss_history, '-',
+         linewidth=3, label='Train error')
+plt.plot(range(5), test_loss_history, '-',
+         linewidth=3, label='Test error')
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.grid(True)
+plt.legend()
+plt.subplot(1, 2, 2)
+plt.plot(range(5), train_acc_history, '-',
+         linewidth=3, label='Train accuracy')
+plt.plot(range(5), test_acc_history, '-',
+         linewidth=3, label='Test accuracy')
+plt.xlabel('epoch')
+plt.ylabel('acc')
+plt.grid(True)
+plt.legend()
+plt.savefig("experiment16.png")
