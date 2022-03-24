@@ -14,5 +14,5 @@ module purge
 module load anaconda3/2020.07
 eval "$(conda shell.bash hook)"
 conda activate condaenv
-python main.py --optim ADADELTA
-# python test2.py
+python main.py --optim SGD
+python test2.py
