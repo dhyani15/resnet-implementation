@@ -9,10 +9,10 @@ class BasicBlock(nn.Module):
     def __init__(self, in_planes, planes, stride=1):
         super(BasicBlock, self).__init__()
         self.conv1 = nn.Conv2d(
-            in_planes, planes, kernel_size=7, stride=stride, padding=3, bias=False)
+            in_planes, planes, kernel_size=5, stride=stride, padding=2, bias=False)
         self.bn1 = nn.BatchNorm2d(planes)
-        self.conv2 = nn.Conv2d(planes, planes, kernel_size=7,
-                               stride=1, padding=3, bias=False)
+        self.conv2 = nn.Conv2d(planes, planes, kernel_size=5,
+                               stride=1, padding=2, bias=False)
         self.bn2 = nn.BatchNorm2d(planes)
 
         self.shortcut = nn.Sequential()
@@ -35,17 +35,16 @@ class ResNet(nn.Module):
     def __init__(self, block, num_blocks, num_classes=10):
         super(ResNet, self).__init__()
         # c1
-        self.in_planes = 50
+        self.in_planes = 64
         self.num_blocks = num_blocks
-        self.conv1 = nn.Conv2d(3, 50, kernel_size=7,
-                               stride=1, padding=3, bias=False)
-        self.bn1 = nn.BatchNorm2d(50)
-        self.layer1 = self._make_layer(block, 50, num_blocks[0], stride=1)
-        self.layer2 = self._make_layer(block, 100, num_blocks[1], stride=2)
-        self.layer3 = self._make_layer(block, 150, num_blocks[2], stride=2)
-        # self.layer4 = self._make_layer(block, 512, num_blocks[3], stride=2)
-        # self.dropout = nn.Dropout(0.25)
-        self.linear = nn.Linear(150, num_classes)
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=5,
+                               stride=1, padding=2, bias=False)
+        self.bn1 = nn.BatchNorm2d(64)
+        self.layer1 = self._make_layer(block, 64, num_blocks[0], stride=1)
+        self.layer2 = self._make_layer(block, 128, num_blocks[1], stride=2)
+        # self.layer3 = self._make_layer(block, 256, num_blocks[2], stride=2)
+        self.dropout = nn.Dropout(0.25)
+        self.linear = nn.Linear(128, num_classes)
 
     def _make_layer(self, block, planes, num_blocks, stride):
         strides = [stride] + [1]*(num_blocks-1)
@@ -58,20 +57,18 @@ class ResNet(nn.Module):
     def forward(self, x):
         out = F.relu(self.bn1(self.conv1(x)))
         out = self.layer1(out)
-        # out = self.dropout(out)
+        out = self.dropout(out)
         out = self.layer2(out)
         # out = self.dropout(out)
-        out = self.layer3(out)
-        # out = self.dropout(out)
-        # out = self.layer4(out)
-        out = F.avg_pool2d(out, 8)
+        # out = self.layer3(out)
+        out = F.avg_pool2d(out, 16)
         out = out.view(out.size(0), -1)
         out = self.linear(out)
         return out
 
 
 def project1_model():
-    return ResNet(BasicBlock, [2, 2, 2])
+    return ResNet(BasicBlock, [4, 4])
 
 
 net = project1_model()

@@ -20,8 +20,6 @@ from utils import progress_bar
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
 parser.add_argument('--optim', default='ADADELTA', type=str, help='optimizer')
-# parser.add_argument('--resume', '-r', action='store_true',
-#                     help='resume from checkpoint')
 args = parser.parse_args()
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -61,15 +59,6 @@ net = net.to(device)
 if device == 'cuda':
     net = torch.nn.DataParallel(net)
     cudnn.benchmark = True
-
-# if args.resume:
-#     # Load checkpoint.
-#     print('==> Resuming from checkpoint..')
-#     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-#     checkpoint = torch.load('./checkpoint/ckpt.pth')
-#     net.load_state_dict(checkpoint['net'])
-#     best_acc = checkpoint['acc']
-#     start_epoch = checkpoint['epoch']
 
 criterion = nn.CrossEntropyLoss()
 
@@ -145,7 +134,7 @@ def test(epoch):
         test_acc = (correct/total) * 100
         test_acc_history.append(test_acc)
 
-    # Save checkpoint.
+    # Save model with best accuracy.
     acc = 100.*correct/total
     if acc > best_acc:
         print("Saving")
@@ -167,23 +156,30 @@ for epoch in range(start_epoch, start_epoch+200):
     scheduler.step()
 
 
-plt.figure(figsize=(5, 5))
-plt.subplot(1, 2, 1)
-plt.plot(range(200), train_loss_history, '-',
-         linewidth=3, label='Train error')
-plt.plot(range(200), test_loss_history, '-',
-         linewidth=3, label='Test error')
-plt.xlabel('epoch')
-plt.ylabel('loss')
-plt.grid(True)
-plt.legend()
-plt.subplot(1, 2, 2)
-plt.plot(range(200), train_acc_history, '-',
-         linewidth=3, label='Train accuracy')
-plt.plot(range(200), test_acc_history, '-',
-         linewidth=3, label='Test accuracy')
-plt.xlabel('epoch')
-plt.ylabel('acc')
-plt.grid(True)
-plt.legend()
-plt.savefig("experiment37.png")
+tPlot, axes = plt.subplots(
+    nrows=1, ncols=2, sharex=True, sharey=False,
+)
+
+tPlot.suptitle('Plot', fontsize=20)
+
+axes[0].subplot(1, 2, 1)
+axes[0].plot(range(200), train_loss_history, '-',
+             linewidth=3, label='Train error')
+axes[0].plot(range(200), test_loss_history, '-',
+             linewidth=3, label='Test error')
+axes[0].xlabel('epoch')
+axes[0].ylabel('loss')
+axes[0].grid(True)
+axes[0].legend()
+
+
+axes[1].subplot(1, 2, 2)
+axes[1].plot(range(200), train_acc_history, '-',
+             linewidth=3, label='Train accuracy')
+axes[1].plot(range(200), test_acc_history, '-',
+             linewidth=3, label='Test accuracy')
+axes[1].xlabel('epoch')
+axes[1].ylabel('acc')
+axes[1].grid(True)
+axes[1].legend()
+axes[1].savefig("experiment9.png")
