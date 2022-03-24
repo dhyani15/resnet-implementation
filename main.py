@@ -136,11 +136,11 @@ def test(epoch):
 
     # Save model with best accuracy.
     acc = 100.*correct/total
-    if acc > best_acc:
-        print("Saving")
-        model_path = './project1_model.pt'
-        torch.save(net.state_dict(), model_path)
-        best_acc = acc
+    # if acc > best_acc:
+    #     print("Saving")
+    #     model_path = './project1_model.pt'
+    #     torch.save(net.state_dict(), model_path)
+    #     best_acc = acc
 
 
 # print number of architecture parameters
@@ -164,7 +164,7 @@ plt.ylabel('loss')
 plt.grid(True)
 plt.legend()
 plt.savefig('best_model_loss.png')
-plt.show()
+plt.clf()
 
 plt.plot(range(200), train_acc_history, '-',
          linewidth=3, label='Train accuracy')
@@ -175,4 +175,3 @@ plt.ylabel('acc')
 plt.grid(True)
 plt.legend()
 plt.savefig('best_model_acc.png')
-plt.show()
