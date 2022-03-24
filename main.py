@@ -138,7 +138,7 @@ def test(epoch):
     acc = 100.*correct/total
     if acc > best_acc:
         print("Saving")
-        model_path = './project1_model_final.pt'
+        model_path = './project1_model.pt'
         torch.save(net.state_dict(), model_path)
         best_acc = acc
 
@@ -182,4 +182,4 @@ axes[1].xlabel('epoch')
 axes[1].ylabel('acc')
 axes[1].grid(True)
 axes[1].legend()
-axes[1].savefig("experiment29.png")
+axes[1].savefig("experiment16.png")
