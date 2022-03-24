@@ -138,7 +138,7 @@ def test(epoch):
     acc = 100.*correct/total
     if acc > best_acc:
         print("Saving")
-        model_path = './test.pt'
+        model_path = './project1_model.pt'
         torch.save(net.state_dict(), model_path)
         best_acc = acc
 
@@ -155,6 +155,7 @@ for epoch in range(start_epoch, start_epoch+5):
     test(epoch)
     scheduler.step()
 
+fig1 = plt.figure(figsize=(8, 8))
 plt.plot(range(200), train_loss_history, '-',
          linewidth=3, label='Train error')
 plt.plot(range(200), test_loss_history, '-',
@@ -164,8 +165,9 @@ plt.ylabel('loss')
 plt.grid(True)
 plt.legend()
 plt.savefig('best_model_loss.png')
-plt.clf()
+plt.show()
 
+fig2 = plt.figure(figsize=(8, 8))
 plt.plot(range(200), train_acc_history, '-',
          linewidth=3, label='Train accuracy')
 plt.plot(range(200), test_acc_history, '-',
@@ -175,3 +177,4 @@ plt.ylabel('acc')
 plt.grid(True)
 plt.legend()
 plt.savefig('best_model_acc.png')
+plt.show()
