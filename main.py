@@ -160,26 +160,26 @@ tPlot, axes = plt.subplots(
     nrows=1, ncols=2, sharex=True, sharey=False,
 )
 
-tPlot.suptitle('Plot', fontsize=20)
+plt.plot(range(200), train_loss_history, '-',
+         linewidth=3, label='Train error')
+plt.plot(range(200), test_loss_history, '-',
+         linewidth=3, label='Test error')
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.grid(True)
+plt.legend()
+plt.savefig('experiment1_loss.png')
+plt.show()
 
-axes[0].subplot(1, 2, 1)
-axes[0].plot(range(200), train_loss_history, '-',
-             linewidth=3, label='Train error')
-axes[0].plot(range(200), test_loss_history, '-',
-             linewidth=3, label='Test error')
-axes[0].xlabel('epoch')
-axes[0].ylabel('loss')
-axes[0].grid(True)
-axes[0].legend()
 
-
-axes[1].subplot(1, 2, 2)
-axes[1].plot(range(200), train_acc_history, '-',
-             linewidth=3, label='Train accuracy')
-axes[1].plot(range(200), test_acc_history, '-',
-             linewidth=3, label='Test accuracy')
-axes[1].xlabel('epoch')
-axes[1].ylabel('acc')
-axes[1].grid(True)
-axes[1].legend()
-axes[1].savefig("experiment1.png")
+plt.subplot(1, 2, 2)
+plt.plot(range(200), train_acc_history, '-',
+         linewidth=3, label='Train accuracy')
+plt.plot(range(200), test_acc_history, '-',
+         linewidth=3, label='Test accuracy')
+plt.xlabel('epoch')
+plt.ylabel('acc')
+plt.grid(True)
+plt.legend()
+plt.savefig('experiment1_acc.png')
+plt.show()
