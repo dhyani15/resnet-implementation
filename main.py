@@ -155,11 +155,6 @@ for epoch in range(start_epoch, start_epoch+200):
     test(epoch)
     scheduler.step()
 
-
-tPlot, axes = plt.subplots(
-    nrows=1, ncols=2, sharex=True, sharey=False,
-)
-
 plt.plot(range(200), train_loss_history, '-',
          linewidth=3, label='Train error')
 plt.plot(range(200), test_loss_history, '-',
@@ -171,8 +166,6 @@ plt.legend()
 plt.savefig('experiment1_loss.png')
 plt.show()
 
-
-plt.subplot(1, 2, 2)
 plt.plot(range(200), train_acc_history, '-',
          linewidth=3, label='Train accuracy')
 plt.plot(range(200), test_acc_history, '-',
