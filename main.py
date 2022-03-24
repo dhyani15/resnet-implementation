@@ -161,29 +161,29 @@ print("Number of trainable parameters in the model: %d\n" %
       (resnet_total_params))
 
 
-for epoch in range(start_epoch, start_epoch+5):
+for epoch in range(start_epoch, start_epoch+200):
     train(epoch)
     test(epoch)
     scheduler.step()
 
 
-plt.figure(figsize=(15, 15))
+plt.figure(figsize=(5, 5))
 plt.subplot(1, 2, 1)
-plt.plot(range(5), train_loss_history, '-',
+plt.plot(range(200), train_loss_history, '-',
          linewidth=3, label='Train error')
-plt.plot(range(5), test_loss_history, '-',
+plt.plot(range(200), test_loss_history, '-',
          linewidth=3, label='Test error')
 plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.grid(True)
 plt.legend()
 plt.subplot(1, 2, 2)
-plt.plot(range(5), train_acc_history, '-',
+plt.plot(range(200), train_acc_history, '-',
          linewidth=3, label='Train accuracy')
-plt.plot(range(5), test_acc_history, '-',
+plt.plot(range(200), test_acc_history, '-',
          linewidth=3, label='Test accuracy')
 plt.xlabel('epoch')
 plt.ylabel('acc')
 plt.grid(True)
 plt.legend()
-plt.savefig("experiment16.png")
+plt.savefig("experiment41.png")
