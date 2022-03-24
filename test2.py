@@ -3,11 +3,10 @@ import torchvision
 import torchvision.transforms as transforms
 import torch.nn as nn
 from project1_model import project1_model
-from utils import progress_bar
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = project1_model().to(device)
-model_path = './project1_model_final.pt'
+model_path = './project1_model.pt'
 checkpoint = torch.load(model_path, map_location=device)
 model = torch.nn.DataParallel(model)
 model.load_state_dict(checkpoint, strict=False)
