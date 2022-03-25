@@ -38,7 +38,7 @@ git clone https://github.com/dhyani15/resnet-implementation.git <br>
   
 -------------------------------------------------------------------------------------------------------- 
 <h3> 3. How to test the code </h3>
-<h4> Method 1: Using ‘test.py’ (Saved parameters and weights) - Recommended </h4>
+<h4> Method 1(To only test the trained model on cifar10 testset): Using ‘test.py’ (Saved parameters and weights) - Recommended </h4>
 (Make sure the file ‘project1_model.pt’ and ‘test.py’ are in the same folder) <br><br>
 <li>Step 1: Create a conda environment <br>
 Check out the following link to do so:  <br>
@@ -52,8 +52,8 @@ python test.py <br><br>
 This program uses the saved model ‘project1_model.pt’ and displays the accuracy as a Tensor. <br><br>
 
 --------------------------------------------------------------------------------------------------------  
-  <h4> Method 2: How to retrain the model using SLURM jobs on HPC </h4>
-<li>Repeat Step 1 & Step 2 from Method 1 <br>
+  <h4> Method 2(to train our model from scratch) : How to retrain the model using SLURM jobs on HPC </h4>
+<li>Make sure you have cloned this repo on your hpc and repeat step 1 & step 2 from Method 1 <br>
 <li>Step 3: Run SLURM command
 Run the following SLURM command using ‘bestmodel.sbatch’: <br>
 sbatch bestmodel.sbatch <br><br>
