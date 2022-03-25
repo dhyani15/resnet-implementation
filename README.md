@@ -21,13 +21,13 @@ Here,
 OUTPUTS – This folder contains all the outputs in ‘.out’ format, of the different experiments with different parameters. To view contents of the folder, use the “cat” command. <br><br>
 PLOTS – This folder contains all the different graphs plotted for each corresponding experiment. They contain .png files and can be opened on Github itself. <br><br>
 SBATCH – This folder contains all the different ‘.sbatch’ files created for each corresponding experiment. They are used to assign Slurm jobs, use the command “sbatch filename.sbatch” to run the particular experiment. <br><br>
-best_model.out – This is the output file generated from for model which produced the best results. <br><br>
+best_model.out – This is the output file generated for our model which produced the best results. <br><br>
 best_model_acc.png & best_model_loss.png – These are the train/test accuracy graph and loss graph for our model. 
-bestmodel.sbatch – This the sbatch file for running the program. <br><br>
-main.py – Python file being ran by the slurm command which carries out different functionalities like loading dataset, creating the model, training and testing based on parameters like optimizers, device used (cpu/cuda), graph plotting and saving the best model as a ‘.pt’ file. <br><br>
-project1_model.pt – This is a PyTorch file for our best architecture with saved parameters which will be used for testing. <br><br>
+bestmodel.sbatch – The sbatch for this model is bestmodel.sbatch. <br><br>
+main.py – Python file being ran by the slurm command which contains our training logic and saves the best model weights in project1_model.pt file. <br><br>
+project1_model.pt – This is a PyTorch file for our best architecture with saved parameters that can be loaded for testing. <br><br>
 requirements.txt – This file contains all the different libraries used for this project. <br><br>
-test.py – Python program to check the saved ‘.pt’ file. <br><br>
+test.py – Python program to run the model saved in project1_model.pt on CIFAR10 testset. <br><br>
 utils.py – Python program which is being used by ‘main.py’ to import different functionalities such as Progress bar and computing the mean and standard deviation value of dataset. <br><br>
 
 -------------------------------------------------------------------------------------------------------- 
@@ -37,13 +37,13 @@ Run a Git Bash terminal in the folder you want to clone in and use the following
 git clone https://github.com/dhyani15/resnet-implementation.git <br>
   
 -------------------------------------------------------------------------------------------------------- 
-<h3> 3. How to run the code </h3>
+<h3> 3. How to test the code </h3>
 <h4> Method 1: Using ‘test.py’ (Saved parameters and weights) - Recommended </h4>
 (Make sure the file ‘project1_model.pt’ and ‘test.py’ are in the same folder) <br><br>
 <li>Step 1: Create a conda environment <br>
 Check out the following link to do so:  <br>
 Managing environments — https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html <br><br>
-<li>Step 2: Installing requirements
+<li>Step 2: For installing requirements
 Run the following commands to set up the environment: <br><br>
 pip install -r requirements.txt <br><br>
 <li>Step 3. Run ‘test.py’ to display accuracy
@@ -52,7 +52,7 @@ python test.py <br><br>
 This program uses the saved model ‘project1_model.pt’ and displays the accuracy as a Tensor. <br><br>
 
 --------------------------------------------------------------------------------------------------------  
-  <h4> Method 2: Run SLURM job to run all epochs </h4>
+  <h4> Method 2: How to retrain the model using SLURM jobs on HPC </h4>
 <li>Repeat Step 1 & Step 2 from Method 1 <br>
 <li>Step 3: Run SLURM command
 Run the following SLURM command using ‘bestmodel.sbatch’: <br>
