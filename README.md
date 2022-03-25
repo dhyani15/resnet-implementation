@@ -50,12 +50,12 @@ pip install -r requirements.txt <br><br>
 Run the python command: <br>
 python test.py <br><br>
 This program uses the saved model ‘project1_model.pt’ and displays the accuracy as a Tensor. <br><br>
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-model = project1_model().to(device)
-model_path = './project1_model.pt'
-checkpoint = torch.load(model_path, map_location=device)
-model = torch.nn.DataParallel(model)
-model.load_state_dict(checkpoint, strict=False)
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')<br>
+model = project1_model().to(device)<br>
+model_path = './project1_model.pt'<br>
+checkpoint = torch.load(model_path, map_location=device)<br>
+model = torch.nn.DataParallel(model)<br>
+model.load_state_dict(checkpoint, strict=False)<br>
 --------------------------------------------------------------------------------------------------------  
   <h4> Method 2(to train our model from scratch) : How to retrain the model using SLURM jobs on HPC </h4>
 <li>Make sure you have cloned this repo on your hpc and repeat step 1 & step 2 from Method 1 <br>
