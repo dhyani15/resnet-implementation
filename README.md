@@ -54,8 +54,7 @@ This program uses the saved model ‘project1_model.pt’ and displays the accur
 --------------------------------------------------------------------------------------------------------  
   <h4> Method 2(to train our model from scratch) : How to retrain the model using SLURM jobs on HPC </h4>
 <li>Make sure you have cloned this repo on your hpc and repeat step 1 & step 2 from Method 1 <br>
-<li>Step 3: Run SLURM command
-Run the following SLURM command using ‘bestmodel.sbatch’: <br>
+<li>Step 3: Run the following SLURM command by running the following command ‘bestmodel.sbatch’: <br>
 sbatch bestmodel.sbatch <br><br>
 This command will create a .out file and two .png files one for training/test loss and one for accuracy. It will run 200 epochs for the model and will print both losses and accuracies for each epoch. <br>
 (Warning: This process takes approx. 45-60 mins for both training and testing combined). <br><br>
