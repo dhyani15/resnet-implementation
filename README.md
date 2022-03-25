@@ -53,7 +53,6 @@ This program uses the saved model ‘project1_model.pt’ and displays the accur
 
 --------------------------------------------------------------------------------------------------------  
   <h4> Method 2: How to retrain the model using SLURM jobs on HPC </h4>
-  <li> Submit the slurm job by running the sbatch file named bestmodel.sbatch :<br>
 <li>Repeat Step 1 & Step 2 from Method 1 <br>
 <li>Step 3: Run SLURM command
 Run the following SLURM command using ‘bestmodel.sbatch’: <br>
