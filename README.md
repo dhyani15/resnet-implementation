@@ -50,7 +50,7 @@ pip install -r requirements.txt <br><br>
 Run the python command: <br>
 python test.py <br><br>
 This program uses the saved model ‘project1_model.pt’ and displays the accuracy as a Tensor. <br><br>
-If you are planning to test our model using your own test script, make sure it has the following command
+If you are planning to test our model using your own test script, make sure it has the following command<br>
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')<br>
 model = project1_model().to(device)<br>
 model_path = './project1_model.pt'<br>
