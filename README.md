@@ -42,7 +42,7 @@ git clone https://github.com/dhyani15/resnet-implementation.git <br>
 (Make sure the file ‘project1_model.pt’ and ‘test.py’ are in the same folder) <br><br>
 <li>Step 1: Create a conda environment <br>
 Check out the following link to do so:  <br>
-Managing environments — https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html <br><br>
+Managing environments — https://sites.google.com/a/nyu.edu/nyu-hpc/documentation/prince/packages/conda-environments <br><br>
 <li>Step 2: For installing requirements
 Run the following commands to set up the environment: <br><br>
 pip install -r requirements.txt <br><br>
