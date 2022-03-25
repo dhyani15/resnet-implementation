@@ -53,6 +53,13 @@ This program uses the saved model ‘project1_model.pt’ and displays the accur
 
 --------------------------------------------------------------------------------------------------------  
   <h4> Method 2: How to retrain the model using SLURM jobs on HPC </h4>
+  <li> Make sure that your testing script loads the model using the following script:<br>
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')<br>
+model = project1_model().to(device)<br>
+model_path = './project1_model.pt'<br>
+checkpoint = torch.load(model_path, map_location=device)<br>
+model = torch.nn.DataParallel(model)<br>
+model.load_state_dict(checkpoint, strict=False)<br>
 <li>Repeat Step 1 & Step 2 from Method 1 <br>
 <li>Step 3: Run SLURM command
 Run the following SLURM command using ‘bestmodel.sbatch’: <br>
