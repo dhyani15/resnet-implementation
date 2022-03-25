@@ -20,7 +20,7 @@ Here,
 <h3> 1. File structure </h3>
 OUTPUTS – This folder contains all the outputs in ‘.out’ format, of the different experiments with different parameters. To view contents of the folder, use the “cat” command. <br><br>
 PLOTS – This folder contains all the different graphs plotted for each corresponding experiment. They contain .png files and can be opened on Github itself. <br><br>
-SBATCH – This folder contains all the different ‘.sbatch’ files created for each corresponding experiment. They are used to assign Slurm jobs, use the command “sbatch <filename>.sbatch” to run the particular experiment. <br><br>
+SBATCH – This folder contains all the different ‘.sbatch’ files created for each corresponding experiment. They are used to assign Slurm jobs, use the command “sbatch filename.sbatch” to run the particular experiment. <br><br>
 best_model.out – This is the output file generated from for model which produced the best results. <br><br>
 best_model_acc.png & best_model_loss.png – These are the train/test accuracy graph and loss graph for our model. 
 bestmodel.sbatch – This the sbatch file for running the program. <br><br>
