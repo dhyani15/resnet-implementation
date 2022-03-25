@@ -42,7 +42,7 @@ git clone https://github.com/dhyani15/resnet-implementation.git <br>
 (Make sure the file ‘project1_model.pt’ and ‘test.py’ are in the same folder) <br><br>
 <li>Step 1: Create a conda environment <br>
 Check out the following link to do so:  <br>
-Managing environments — conda 4.12.0.post16+7651023c documentation <br><br>
+Managing environments — https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html <br><br>
 <li>Step 2: Installing requirements
 Run the following commands to set up the environment: <br><br>
 pip install -r requirements.txt <br><br>
@@ -63,15 +63,15 @@ This command will create a .out file and two .png files one for training/test lo
   <h2>REFERENCES:</h2>
 <li>[1] Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. ”Imagenet classification with deep convolutional
 neural networks.” Advances in neural information processing systems 25 (2012).
-<li>[2] Simonyan, Karen, and Andrew Zisserman. ”Very deep convolutional networks for large-scale image recognition.” arXiv preprint arXiv:1409.1556 (2014).
-<li>[3] Szegedy, Christian, et al. ”Inception-v4, inception-resnet and the impact of residual connections on learning.” Thirty-first AAAI conference on artificial intelligence. 2017.
+<li>[2] Simonyan, Karen, and Andrew Zisserman. ”Very deep convolutional networks for large-scale image recognition.” arXiv preprint arXiv:1409.1556 (2014).
+<li>[3] Szegedy, Christian, et al. ”Inception-v4, inception-resnet and the impact of residual connections on learning.” Thirty-first AAAI conference on artificial intelligence. 2017.
 <li>[4] He, Kaiming, et al. ”Deep residual learning for image recognition.” Proceedings of the IEEE conference on
 computer vision and pattern recognition. 2016.
 <li>[5] Tan, Mingxing, and Quoc Le. ”Efficientnet: Rethinking model scaling for convolutional neural networks.”
 International conference on machine learning. PMLR, 2019.
 <li>[6] Zagoruyko, Sergey, and Nikos Komodakis. ”Wide residual networks.” arXiv preprint arXiv:1605.07146
 (2016).
-<li>[7] Zhang, Michael, et al. ”Lookahead optimizer: k steps forward, 1 step back.” Advances in Neural Information Processing Systems 32 (2019).
+<li>[7] Zhang, Michael, et al. ”Lookahead optimizer: k steps forward, 1 step back.” Advances in Neural Information Processing Systems 32 (2019).
 <li>[8] Krizhevsky, Alex, and Geoffrey Hinton. ”Learning multiple layers of features from tiny images.” (2009): 7.
 <li>[9] Shorten, C., Khoshgoftaar, T.M. A survey on Image Data Augmentation for Deep Learning. J Big Data 6,
 60 (2019). https://doi.org/10.1186/s40537-019-0197-0
